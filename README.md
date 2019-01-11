@@ -183,6 +183,9 @@ One last step is to cache the engine and apps from the configuration files into 
 
 If we now go back and forth from our project in shotgun desktop ( < arrow top left if you are already within a project ), we should be able to see Natron as an application to launch.
 
+![natron_is_configured.png](config/images/natron_is_configured.png)
+
+
 ## [tk-multi-workfiles2](https://support.shotgunsoftware.com/hc/en-us/articles/219033088)
 This application forms the basis for file management in the Shotgun Pipeline Toolkit. It lets you jump around quickly between your various Shotgun entities and gets you started working quickly. No path needs to be specified as the application manages that behind the scenes. The application helps you manage your working files inside a Work Area and makes it easy to share your work with others.
 
