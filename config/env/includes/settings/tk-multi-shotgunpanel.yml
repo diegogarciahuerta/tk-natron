@@ -1,0 +1,41 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+
+# Diego Garcia Huerta 211218 - Natron Engine additions
+# natron
+settings.tk-multi-shotgunpanel.natron:
+  action_mappings:
+    PublishedFile:
+    - actions: [read_node]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [read_node]
+      filters: {published_file_type: Flame Render}
+    - actions: [read_node]
+      filters: {published_file_type: Flame Quicktime}
+    - actions: [read_node]
+      filters: {published_file_type: Image}
+    - actions: [read_node]
+      filters: {published_file_type: Movie}
+    - actions: [read_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [read_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [read_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
