@@ -33,11 +33,11 @@ This engine has been tested in Windows using version 2.3.14.
 
 ## Engine Installation
 
-When I started using shotgun toolkit, I found quite challenging figuring out how to install and configure a new tk application or a new engine. Shotgun Software provides extensive documentation on how to do this, but I use the get lost in details, specially with so many configuration files to modify.
+When I started using shotgun toolkit, I found quite challenging figuring out how to install and configure a new tk application or a new engine. Shotgun Software provides extensive documentation on how to do this, but I used the get lost in details, specially with so many configuration files to modify.
 
 If you are familiar with how to setup an engine and apps, you might want to skip the rest of this document, just make sure to check the [templates](config/core/templates.yml) and [additions to the configs](config/env) that might give you a good start.
 
-If you are new to shotgun, I also recommend to read at least the following shotgun articles, so you get familiar with how the configuration files are setup, and the terminology used:
+If you are new to shotgun toolkit, I recommend to read at least the following shotgun articles, so you get familiar with how the configuration files are setup, and the terminology used:
 
 * [App and Engine Configuration Reference](https://support.shotgunsoftware.com/hc/en-us/articles/219039878-App-and-Engine-Configuration-Reference)
 * [Overview of Toolkit's New Default Configuration](https://support.shotgunsoftware.com/hc/en-us/articles/115004077494-Overview-of-Toolkit-s-New-Default-Configuration-)
@@ -57,16 +57,16 @@ If you haven't done it yet, make sure you have gone through the basic steps to c
 
     ![advanced_project_setup](config/images/advanced_project_setup.png)
 
-* *Select a configuration*: "Shotgun Default" or pick an existing porject that you have already setup pages and filters for.
+* *Select a configuration*: "Shotgun Default" or pick an existing project that you have already setup pages and filters for.
 ![select_a_project_configuration](config/images/select_a_project_configuration.png)
 
-* *Select a Shotgun Configuration*: select "default" which will download the standard templates from shotgun. (this documentation is written assuming you have this configuration)
+* *Select a Shotgun Configuration*: select "default" which will download the standard templates/configuration from shotgun. (this documentation is written assuming you have this configuration)
 ![select_a_shotgun_configuration](config/images/select_a_shotgun_configuration.png)
 
-* *Define Storages*: Make sure you name your first storage "primary", and a choose a primary folder where all the 'jobs' publishes will be stored, in this case "D:\demo\jobs" for illustrative purposes.
+* *Define Storages*: Make sure you name your first storage "primary", and a choose a primary folder where all the 'jobs' will be stored, in this case "D:\demo\jobs" for illustrative purposes.
 ![define_storages](config/images/define_storages.png)
 
-* *Project Folder Name*: This is the name of the project in disk. You might have some sort of naming convention for project that you might follow, or leave as it is. (My advice is that you do not include spaces in the name)
+* *Project Folder Name*: This is the name of the project in disk. You might have some sort of naming convention for project that you might follow, or leave as it is. (My advice is that you do not include spaces in the name!)
 ![project_folder_name](config/images/project_folder_name.png)
 
 * *Select Deployment*: Choose "Centralized Setup". This will be the location of the configuration files (that we will be modifying later). For example, you could place the specific configuration for a project (in this example called game_config) within a folder called "configs" at the same level then the jobs folder, something like: 
@@ -98,7 +98,7 @@ If you haven't done it yet, make sure you have gone through the basic steps to c
 
 ## Modifying the toolkit configuration files to add this engine and related apps
 
-Every pipeline configuration has got different environments where you can configure apps accordingly. (for example you might want different apps depending if you are at an asset context or a shot context. The configured environments really depend on your projects requirements. While project, asset, asset_step, sequence, shot, shot_step, site are the standard ones, it is not uncommon to have a sequence_step environment or use a episode based environment either.
+Every pipeline configuration has got different environments where you can configure apps accordingly. (for example you might want different apps depending if you are at an asset context or a shot context). The configured environments really depend on your projects requirements. While project, asset, asset_step, sequence, shot, shot_step, site are the standard ones, it is not uncommon to have a sequence_step environment or use a episode based environment either.
 
 I've included a folder called 'config' in this repository where you can find the additions to each of the environments and configuration yml files that come with the [default shotgun toolkit configuration repository](https://github.com/shotgunsoftware/tk-config-default2) (as of writing) 
 
@@ -106,7 +106,7 @@ I've included a folder called 'config' in this repository where you can find the
 
 These yaml files provided **should be merged with the original ones as they won't work on their own.**
 
-As an example, for the location of the engine, we use a git descriptor that allows up to track the code from a git repository. This allows easy updates, whenever a new version is released. So in the example above, you should modify the file:
+As an example, for the location of the engine, we use a git descriptor that allows up to track the code from a git repository. This become easy to update whenever a new version is released. So in the example above, you should modify the file:
 ``.../game_config/config/env/includes/engine_locations.yml``
 
 and add the following changes from this file:
@@ -148,16 +148,16 @@ The additions to `config/core/templates.yml` are provided also under the config 
 
 ## Configuring Natron in the software launcher
 
-In order for our application to show up in the shotgun launcher, we need to add it to our list of software that is valid for this project.
+In order for Natron to show up in the shotgun launcher, we need to add it to our list of softwares that are valid for this project.
 
 * Navigate to your shotgun url, ie. `example.shotgunstudio.com`, and once logged in, clink in the Shotgun Settings menu, the arrow at the top right of the webpage, close to your user picture. 
 * Click in the Software menu
 ![select_a_project_configuration](config/images/select_a_project_configuration.png)
 
-* We will create a new entry for Natron, called "Natron" and whose description was conveniently copy and pasted from Wikipedia.
+* We will create a new entry for Natron, called "Natron". The description was conveniently copied and pasted from Wikipedia.
 ![create_new_software](config/images/create_new_software.png)
 
-* We now sould specify the engine this software will use. "tk-natron"
+* We should now specify the engine this software will use. "tk-natron"
 ![software_specify_engine](config/images/software_specify_engine.png)
 
 * Note that you can restrict this application to certain projects by specifying the project under the projects column. If no projects are specified this application will show up for all the projects that have this engine in their configuration files.
@@ -174,7 +174,7 @@ One last step is to cache the engine and apps from the configuration files into 
 * Open a console and navigate to your pipeline configuration folder, where you will find a `tank` or `tank.bat` file.
 (in our case we placed the pipeline configuration under `D:\demo\configs\game_config`)
 
-* type `tank cache_apps` , and press enter. Shotgun Toolkit will start revising the changes we have done to the configuration yml files and downloading what is requires, in this case the engine and the changes for tk-multi-setframerange app listed below.
+* type `tank cache_apps` , and press enter. Shotgun Toolkit will start revising the changes we have done to the configuration yml files and downloading what is required, in this case the engine and the changes for tk-multi-setframerange app listed below.
 
 ![tank_cache_apps](config/images/tank_cache_apps.png)
 
