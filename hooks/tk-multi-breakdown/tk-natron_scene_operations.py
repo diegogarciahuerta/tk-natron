@@ -17,6 +17,25 @@ __author__ = "Diego Garcia Huerta"
 __email__ = "diegogh2000@gmail.com"
 
 
+
+
+class NatronBreakdownSceneResource(str):
+    """
+    Helper Class to store metadata per update item.
+
+    tk-multi-breakdown requires item['node'] to be a str. This is what is displayed in 
+    the list of recognized items to update. We want to add metadata to each item
+    as what we want to pass to update is the parameter and not the node itself.
+    python friendly object + __repr__ magic method.
+    """
+
+    def __new__(cls, node, parameter):
+        text = "%s" % node
+        obj = str.__new__(cls, text)
+        obj.parameter = parameter
+        return obj
+
+
 class BreakdownSceneOperations(Hook):
     """
     Breakdown operations for Natron.
@@ -59,7 +78,7 @@ class BreakdownSceneOperations(Hook):
                 file_param = node.getParam('filename')
                 ref_path = file_param.getValue()
                 ref_path = ref_path.replace("/", os.path.sep)
-                refs.append({"attr": node, "type": "file", "path": ref_path})
+                refs.append({"node": NatronBreakdownSceneResource(node, file_param), "type": "file", "path": ref_path})
 
         return refs
 
@@ -79,7 +98,8 @@ class BreakdownSceneOperations(Hook):
         engine = self.parent.engine
 
         for i in items:
-            node = i["attr"]
+            node = i["node"]
+            attr = node.parameter
             node_type = i["type"]
             new_path = i["path"]
 

@@ -14,6 +14,8 @@ Hook that loads defines all the available actions, broken down by publish type.
 
 import os
 import sgtk
+import re
+import glob
 from sgtk.errors import TankError
 
 import NatronGui
